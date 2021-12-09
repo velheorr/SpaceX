@@ -1,0 +1,27 @@
+.header {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 31px;
+}
+.body-wrapper {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    margin: 30px 0px;
+    .title {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: grey;
+    }
+    .body {
+        margin: 10px 15px;
+        padding: 10px;
+        min-height: 600px;
+        >div {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+
+
