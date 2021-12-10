@@ -19,9 +19,21 @@
         min-height: 600px;
         >div {
             margin-bottom: 10px;
+            position: relative;
+            :hover .rocket{
+                display: block;
+            }
         }
     }
 }
 
 
-
+.rocket {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    display: none;
+    &:hover {
+        display: block;
+    }
+}
