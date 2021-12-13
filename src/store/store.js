@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-
+import launches from './LaunchSlice'
 
 const srtingMiddleWare = (store) => (next)=> (action)=>{
   if (typeof action === 'string'){
@@ -11,7 +11,7 @@ const srtingMiddleWare = (store) => (next)=> (action)=>{
 }
 
 const store = configureStore({
-  reducer: {},
+  reducer: {launches},
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(srtingMiddleWare),
   devTools: process.env.NODE_ENV !== 'production',
 
