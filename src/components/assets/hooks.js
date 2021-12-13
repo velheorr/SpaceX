@@ -4,15 +4,17 @@ import Paper from "@mui/material/Paper";
 import React from "react";
 
 
-export const useMyDrop = (name, items) =>{
+export const useMyDrop = (items, name, accept) =>{
     const [, drop] = useDrop(() => ({
-        accept: ItemTypes.CARD,
+        accept,
         drop: () => ({ name: name }),
         collect: (monitor) => ({
             isOver: monitor.isOver(),
             canDrop: monitor.canDrop(),
         }, []),
     }));
+
+    if (!name){ return {items}}
 
     return <Paper className='body' ref={drop}>{items}</Paper>
 }

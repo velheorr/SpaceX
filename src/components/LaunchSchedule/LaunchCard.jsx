@@ -7,11 +7,11 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import {useDrag} from "react-dnd";
 import {ItemTypes} from '../assets/types'
 
-const LaunchCard = ({rocket_name, name}) => {
+const LaunchCard = ({rocket_name, name, type}) => {
 
 
     const [{isDragging}, drag] = useDrag({
-        type: ItemTypes.CARD,
+        type: type,
         item: { name },
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult();
