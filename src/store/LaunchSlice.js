@@ -16,7 +16,11 @@ const initialState = {
         {rocket_id: 10, rocket_name: 'Falcon', name: 'Dragon 1'},
         {rocket_id: 11, rocket_name: 'Falcon 2', name: 'Dragon 2'},
         {rocket_id: 12, rocket_name: 'Falcon 3', name: 'Dragon 3'}
-    ]
+    ],
+    alert: '',
+    showAlert: false,
+    page: 1,
+    modal: false
 };
 
 
@@ -24,8 +28,14 @@ export const launchSlice = createSlice({
     name: 'launches',
     initialState,
     reducers: {
-        openCatalog: (state, action) => {state.futureLaunches = action.payload},
-
+        /*setAlert: (state, action) => {state.alert = action.payload.name},*/
+        setAlert: (state, action) => {
+            state.alert = action.payload
+            console.log(action)
+            state.showAlert = !state.showAlert
+        },
+        switchPage: (state, action) => {state.page = action.payload},
+        switchModal: (state, action) => {state.modal = !state.modal},
     },
 
     extraReducers: (builder) => {
@@ -36,7 +46,7 @@ export const launchSlice = createSlice({
 const {actions, reducer} = launchSlice;
 export default reducer;
 export const {
-    openCatalog
+    setAlert, switchPage, switchModal
 } = actions;
 
 
