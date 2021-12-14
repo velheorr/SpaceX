@@ -6,7 +6,7 @@ import SheduleSkeleton from "../assets/sheduleSkeleton";
 import {useDispatch, useSelector} from "react-redux";
 import {useMyDrop} from "../assets/hooks";
 import {ItemTypes} from "../assets/types";
-import {getCurrentLaunches} from "../../store/LaunchSlice";
+import {getCurrentLaunches, getPastLaunches} from "../../store/LaunchSlice";
 
 
 
@@ -18,13 +18,14 @@ const LauchSchedule = () => {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        getDataLaunches()
+        getDataLaunches(getCurrentLaunches, 'upcoming')
+        getDataLaunches(getPastLaunches, 'past')
 
     },[])
 
-    const getDataLaunches = async ()=>{
-        const launches = await api.getLaunches()
-        dispatch(getCurrentLaunches(launches))
+    const getDataLaunches = async (get, time)=>{
+        const launches = await api.getLaunches(time)
+        dispatch(get(launches))
     }
 
 

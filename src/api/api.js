@@ -15,8 +15,8 @@ export const api = {
                 console.log(error);
             })
     },
-    async getLaunches(){
-        let res = await axios.get(`${baseURL}launches/upcoming`)
+    async getLaunches(time){
+        let res = await axios.get(`${baseURL}launches/${time}`)
         const launchData = res.data.map(item =>{
             return { id: item.id, name: item.name, rocketId: item.rocket, date: item.date_utc}
         })

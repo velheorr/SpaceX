@@ -22,6 +22,9 @@ export const launchSlice = createSlice({
         },
         switchPage: (state, action) => {state.page = action.payload},
         switchModal: (state, action) => {state.modal = !state.modal},
+        getPastLaunches: (state, action) => {
+            state.pastLaunches = action.payload
+        },
         getCurrentLaunches: (state, action) => {
             state.currentLaunches = action.payload
         },
@@ -39,7 +42,7 @@ export const launchSlice = createSlice({
 const {actions, reducer} = launchSlice;
 export default reducer;
 export const {
-    setAlert, switchPage, switchModal, getCurrentLaunches, detailPage
+    setAlert, switchPage, switchModal, getCurrentLaunches, getPastLaunches, detailPage
 } = actions;
 
 
