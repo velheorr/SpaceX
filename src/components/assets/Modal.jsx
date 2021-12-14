@@ -3,13 +3,20 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from "@mui/material/IconButton";
-import {switchModal} from "../../store/LaunchSlice";
+import {delMyLaunch, switchModal} from "../../store/LaunchSlice";
 
 const Modal = () => {
+    const modalData = useSelector(state => state.launches.modalData);
     const dispatch = useDispatch();
+
+    const deleteLaunch = () =>{
+        dispatch(delMyLaunch(modalData.name))
+        dispatch(switchModal())
+    }
+
     return (
         <div className='modal'>
             <div className='modalContent'>
@@ -19,12 +26,13 @@ const Modal = () => {
                         <IconButton><CloseIcon /></IconButton>
                     </div>
                     <CardContent>
-                        <div>Flight details</div>
-
+                        <div className='title'>{modalData.name}</div>
+                        <div>Rocket: <span className='title'>{modalData.rocket_name}</span></div>
+                        <div>Launch date: <span className='title'>{modalData.date}</span></div>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">Confirm</Button>
-                        <Button size="small" onClick={()=>{dispatch(switchModal())}}>Cancel</Button>
+                        <Button size="small" color='error' onClick={deleteLaunch}>Confirm</Button>
+                        <Button size="small" onClick={()=>dispatch(switchModal())}>Cancel</Button>
                     </CardActions>
                 </Card>
             </div>

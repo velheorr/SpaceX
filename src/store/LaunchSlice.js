@@ -8,7 +8,8 @@ const initialState = {
     showAlert: false,
     page: 1,
     launchDetails: {},
-    modal: false
+    modal: false,
+    modalData: {}
 };
 
 
@@ -22,9 +23,15 @@ export const launchSlice = createSlice({
         },
         switchPage: (state, action) => {state.page = action.payload},
         switchModal: (state, action) => {state.modal = !state.modal},
+        addModalData: (state, action) => {state.modalData = action.payload},
         getPastLaunches: (state, action) => {state.pastLaunches = action.payload},
         getCurrentLaunches: (state, action) => {state.currentLaunches = action.payload},
         addMyLaunch: (state, action) => {state.myLaunches.push(action.payload)},
+        delMyLaunch: (state, action) => {
+            state.myLaunches = state.myLaunches.filter(item => {
+                return item.name !== action.payload
+            })
+        },
         detailPage:  (state, action) => {state.launchDetails = action.payload.res},
     },
     extraReducers: (builder) => {
@@ -35,7 +42,7 @@ export const launchSlice = createSlice({
 const {actions, reducer} = launchSlice;
 export default reducer;
 export const {
-    setAlert, switchPage, switchModal, getCurrentLaunches, getPastLaunches, detailPage, addMyLaunch
+    setAlert, switchPage, switchModal, getCurrentLaunches, getPastLaunches, detailPage, addMyLaunch, delMyLaunch, addModalData
 } = actions;
 
 

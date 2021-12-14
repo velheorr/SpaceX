@@ -18,7 +18,6 @@ const LauchSchedule = () => {
     const [loadPast, setLoadPast] = useState(true);
     const [loadCurrent, setLoadCurrent] = useState(true);
 
-
     useEffect(()=>{
         getDataLaunches(getPastLaunches, 'past',  setLoadPast)
         getDataLaunches(getCurrentLaunches, 'upcoming', setLoadCurrent)
@@ -31,10 +30,9 @@ const LauchSchedule = () => {
     }
 
 
-
     // Ф-я отрисовки компонента LaunchCard
     const render = (arr, type = ItemTypes.CARD)=>{
-        return arr.map((item)=> <LaunchCard id={item.id} key={item.id} name={item.name} rocket_name={item.rocketName} type={type} />)
+        return arr.map((item, i)=> <LaunchCard id={item.id} key={i} name={item.name} rocket_name={item.rocketName} date={item.date} type={type} />)
     }
     // Рендер прошлых запусков
     const pastLaunchesData = render(pastLaunches)

@@ -3,7 +3,6 @@ import {useDrop} from "react-dnd";
 import Paper from "@mui/material/Paper";
 
 
-
 export const useMyDrop = (items, name, accept) =>{
     const [, drop] = useDrop(() => ({
         accept,
