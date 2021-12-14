@@ -1,20 +1,8 @@
 import * as axios from "axios";
-import {useCallback, useState} from "react";
 
 const baseURL = 'https://api.spacexdata.com/v4/'
 
 export const api = {
-    getPastLaunches(){
-        return axios.get(`${baseURL}launches/upcoming`)
-            .then(function (response) {
-                // handle success
-                console.log(response);
-                console.log(response.data[0].name);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    },
     async getLaunches(time){
         let res = await axios.get(`${baseURL}launches/${time}`)
         const launchData = res.data.map(item =>{

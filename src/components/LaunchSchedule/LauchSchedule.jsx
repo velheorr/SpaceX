@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Paper from "@mui/material/Paper";
 import LaunchCard from "./LaunchCard";
 import {api} from "../../api/api";
@@ -9,23 +9,25 @@ import {ItemTypes} from "../assets/types";
 import {getCurrentLaunches, getPastLaunches} from "../../store/LaunchSlice";
 
 
-
-
 const LauchSchedule = () => {
     const pastLaunches = useSelector(state => state.launches.pastLaunches);
     const currentLaunches = useSelector(state => state.launches.currentLaunches);
     const myLaunches = useSelector(state => state.launches.myLaunches);
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-        getDataLaunches(getCurrentLaunches, 'upcoming')
-        getDataLaunches(getPastLaunches, 'past')
+    const [loadPast, setLoadPast] = useState(true);
+    const [loadCurrent, setLoadCurrent] = useState(true);
 
+
+    useEffect(()=>{
+        getDataLaunches(getPastLaunches, 'past',  setLoadPast)
+        getDataLaunches(getCurrentLaunches, 'upcoming', setLoadCurrent)
     },[])
 
-    const getDataLaunches = async (get, time)=>{
+    const getDataLaunches = async (get, time, load)=>{
         const launches = await api.getLaunches(time)
         dispatch(get(launches))
+        load(false)
     }
 
 
@@ -48,21 +50,17 @@ const LauchSchedule = () => {
             <div>
                 <div className='title'>Past launches</div>
                 <Paper className='body'>
-                      { pastLaunches ? pastLaunchesData : <SheduleSkeleton/> }
+                      { !loadPast ? pastLaunchesData : <SheduleSkeleton/> }
                 </Paper>
-                {/*<SheduleSkeleton/>*/}
             </div>
             <div>
                 <div className='title'>Launches</div>
-                { currentLaunches ? lauches_toRender : <SheduleSkeleton/> }
-
+                { !loadCurrent ? lauches_toRender : <SheduleSkeleton/> }
             </div>
             <div>
                 <div className='title'>My launches</div>
-                { myLaunches ? myLaunches_toRender : <SheduleSkeleton/> }
+                {myLaunches_toRender}
             </div>
-
-
         </div>
     );
 };

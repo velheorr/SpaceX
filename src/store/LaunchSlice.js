@@ -22,18 +22,11 @@ export const launchSlice = createSlice({
         },
         switchPage: (state, action) => {state.page = action.payload},
         switchModal: (state, action) => {state.modal = !state.modal},
-        getPastLaunches: (state, action) => {
-            state.pastLaunches = action.payload
-        },
-        getCurrentLaunches: (state, action) => {
-            state.currentLaunches = action.payload
-        },
-        detailPage:  (state, action) => {
-            console.log(action.payload.res)
-            state.launchDetails = action.payload.res
-        },
+        getPastLaunches: (state, action) => {state.pastLaunches = action.payload},
+        getCurrentLaunches: (state, action) => {state.currentLaunches = action.payload},
+        addMyLaunch: (state, action) => {state.myLaunches.push(action.payload)},
+        detailPage:  (state, action) => {state.launchDetails = action.payload.res},
     },
-
     extraReducers: (builder) => {
 
     },
@@ -42,7 +35,7 @@ export const launchSlice = createSlice({
 const {actions, reducer} = launchSlice;
 export default reducer;
 export const {
-    setAlert, switchPage, switchModal, getCurrentLaunches, getPastLaunches, detailPage
+    setAlert, switchPage, switchModal, getCurrentLaunches, getPastLaunches, detailPage, addMyLaunch
 } = actions;
 
 
