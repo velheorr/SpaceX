@@ -8,21 +8,25 @@ import {useMyDrop} from "../assets/hooks";
 import {ItemTypes} from "../assets/types";
 import {getCurrentLaunches, getPastLaunches} from "../../store/LaunchSlice";
 
-
 const LauchSchedule = () => {
     const pastLaunches = useSelector(state => state.launches.pastLaunches);
     const currentLaunches = useSelector(state => state.launches.currentLaunches);
     const myLaunches = useSelector(state => state.launches.myLaunches);
     const dispatch = useDispatch()
 
+    // состояние скелетонов
     const [loadPast, setLoadPast] = useState(true);
     const [loadCurrent, setLoadCurrent] = useState(true);
 
+    // Начальная инициализация данных (загрузка + скелетон пока загружаються данные)
     useEffect(()=>{
         getDataLaunches(getPastLaunches, 'past',  setLoadPast)
         getDataLaunches(getCurrentLaunches, 'upcoming', setLoadCurrent)
     },[])
-
+    // ф-я загрузки данных с api
+    // get = передача в диспатч экшена
+    // time = параметр get запроса для получения данных
+    // load = определение с какой таблицы выключить скелетон
     const getDataLaunches = async (get, time, load)=>{
         const launches = await api.getLaunches(time)
         dispatch(get(launches))
