@@ -1,6 +1,5 @@
 import React from "react";
 import {useDrop} from "react-dnd";
-import {ItemTypes} from "./types";
 import Paper from "@mui/material/Paper";
 
 

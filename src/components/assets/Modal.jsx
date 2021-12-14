@@ -6,15 +6,15 @@ import Button from "@mui/material/Button";
 import {useDispatch} from "react-redux";
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from "@mui/material/IconButton";
+import {switchModal} from "../../store/LaunchSlice";
 
 const Modal = () => {
     const dispatch = useDispatch();
     return (
         <div className='modal'>
             <div className='modalContent'>
-
                 <Card sx={{ maxWidth: 400, margin: '0 auto' }}>
-                    <div className='close'>
+                    <div className='close' onClick={()=>{dispatch(switchModal())}}>
                         <div>Cancel flight reservation?</div>
                         <IconButton><CloseIcon /></IconButton>
                     </div>
@@ -24,7 +24,7 @@ const Modal = () => {
                     </CardContent>
                     <CardActions>
                         <Button size="small">Confirm</Button>
-                        <Button size="small">Cancel</Button>
+                        <Button size="small" onClick={()=>{dispatch(switchModal())}}>Cancel</Button>
                     </CardActions>
                 </Card>
             </div>

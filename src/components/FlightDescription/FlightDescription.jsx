@@ -3,7 +3,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useDispatch} from "react-redux";
 import {switchPage} from "../../store/LaunchSlice";
 import Button from "@mui/material/Button";
-import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";

@@ -5,12 +5,11 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import {useDrag} from "react-dnd";
-import {ItemTypes} from '../assets/types'
-import {setAlert, switchModal, switchPage} from "../../store/LaunchSlice";
+import {detailPage, setAlert, switchModal, switchPage} from "../../store/LaunchSlice";
 import {useDispatch} from "react-redux";
 
 
-const LaunchCard = ({id, rocket_name, name, type}) => {
+const LaunchCard = ({id, rocket_name, name, type, parentArr}) => {
     const dispatch = useDispatch()
 
     const [{isDragging}, drag] = useDrag({
@@ -42,7 +41,10 @@ const LaunchCard = ({id, rocket_name, name, type}) => {
         opacity:isDragging ? '0.7' : '1', cursor: 'move'
     }
 
-    const flightDescription = () =>{
+    const flightDescription = (id, parentArr) =>{
+        dispatch(detailPage({id, parentArr}))
+
+
         dispatch(switchPage(2))
     }
 
@@ -51,7 +53,7 @@ const LaunchCard = ({id, rocket_name, name, type}) => {
             <CardContent>
                 <Typography variant="h6" component="div">{name}</Typography>
                 <Typography variant="caption">{rocket_name}</Typography>
-                <div className='rocket' onClick={()=> flightDescription()}><RocketLaunchIcon color='primary'/></div>
+                <div className='rocket' onClick={()=> flightDescription(id, parentArr)}><RocketLaunchIcon color='primary'/></div>
             </CardContent>
         </Card>
     );
