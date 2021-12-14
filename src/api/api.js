@@ -1,8 +1,11 @@
 import * as axios from "axios";
 
 const baseURL = 'https://api.spacexdata.com/v4/'
-
+// api для получение данных о полёте
+// и формирование данных в нужный вид, который будет использоваться
 export const api = {
+    // получение всех полётов
+    // time = параметр, какие полёты получать (прошлые или текущие)
     async getLaunches(time){
         let res = await axios.get(`${baseURL}launches/${time}`)
         const launchData = res.data.map(item =>{
@@ -14,6 +17,7 @@ export const api = {
         launchData.map((item,i) => item.rocketName = rockets[i] )
         return launchData
     },
+    // получение имени ракеты по её id
     getRocketName(id){
         return axios.get(`${baseURL}rockets/${id}`)
             .then(function (response) {
@@ -23,6 +27,7 @@ export const api = {
                 console.log(error);
             })
     },
+    // получение данных о одном полёте по id
     async getOne(id){
         let responce = await axios.get(`${baseURL}launches/${id}`)
         const res = responce.data

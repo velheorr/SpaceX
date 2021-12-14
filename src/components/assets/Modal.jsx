@@ -12,6 +12,7 @@ const Modal = () => {
     const modalData = useSelector(state => state.launches.modalData);
     const dispatch = useDispatch();
 
+    // удаление элемента из моих полётов
     const deleteLaunch = () =>{
         dispatch(delMyLaunch(modalData.name))
         dispatch(switchModal())

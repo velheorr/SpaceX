@@ -22,6 +22,7 @@ const LauchSchedule = () => {
     useEffect(()=>{
         getDataLaunches(getPastLaunches, 'past',  setLoadPast)
         getDataLaunches(getCurrentLaunches, 'upcoming', setLoadCurrent)
+        // eslint-disable-next-line
     },[])
     // ф-я загрузки данных с api
     // get = передача в диспатч экшена
@@ -32,7 +33,6 @@ const LauchSchedule = () => {
         dispatch(get(launches))
         load(false)
     }
-
 
     // Ф-я отрисовки компонента LaunchCard
     const render = (arr, type = ItemTypes.CARD)=>{

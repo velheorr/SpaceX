@@ -4,3 +4,4 @@ export const ItemTypes = {
     MYLAUNCHES: 'myLaunches'
 
 }
+// типы данных для dnd

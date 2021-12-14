@@ -12,7 +12,6 @@ const FlightDescription = () => {
     const dispatch = useDispatch()
     const launchDetails = useSelector(state => state.launches.launchDetails);
 
-
     return (
         <div className='details'>
             <Button onClick={()=> dispatch(switchPage(1))} variant="outlined" startIcon={<ArrowBackIcon />}>
@@ -34,10 +33,8 @@ const FlightDescription = () => {
                         <li>Flight number: {launchDetails.flight_number}</li>
                         <li>Date: {launchDetails.date}</li>
                     </ul>
-
                 </CardContent>
             </Card>
-
         </div>
     );
 };
