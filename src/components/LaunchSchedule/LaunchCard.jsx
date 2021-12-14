@@ -7,6 +7,7 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import {useDrag} from "react-dnd";
 import {detailPage, setAlert, switchModal, switchPage} from "../../store/LaunchSlice";
 import {useDispatch} from "react-redux";
+import {api} from "../../api/api";
 
 
 const LaunchCard = ({id, rocket_name, name, type, parentArr}) => {
@@ -41,10 +42,9 @@ const LaunchCard = ({id, rocket_name, name, type, parentArr}) => {
         opacity:isDragging ? '0.7' : '1', cursor: 'move'
     }
 
-    const flightDescription = (id, parentArr) =>{
-        dispatch(detailPage({id, parentArr}))
-
-
+    const flightDescription = async (id) =>{
+        const res = await api.getOne(id)
+        dispatch(detailPage({res}))
         dispatch(switchPage(2))
     }
 

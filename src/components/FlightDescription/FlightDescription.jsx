@@ -1,6 +1,6 @@
 import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {switchPage} from "../../store/LaunchSlice";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 
 const FlightDescription = () => {
     const dispatch = useDispatch()
+    const launchDetails = useSelector(state => state.launches.launchDetails);
 
 
     return (
@@ -20,18 +21,20 @@ const FlightDescription = () => {
             <Card sx={{ maxWidth: 400, margin: '0 auto' }}>
                 <CardMedia
                     component="img"
-                    height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
+                    width="400"
+                    image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5-cXFNdvkuvVlPLlLDVl5S9NOn0WBZJcKCA&usqp=CAU"
+                    alt="space X"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        Lizard
+                        {launchDetails.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
-                    </Typography>
+                    <ul>
+                        <li>Rocket: {launchDetails.rocketName}</li>
+                        <li>Flight number: {launchDetails.flight_number}</li>
+                        <li>Date: {launchDetails.date}</li>
+                    </ul>
+
                 </CardContent>
             </Card>
 

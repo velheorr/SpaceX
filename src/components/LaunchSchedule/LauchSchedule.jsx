@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Paper from "@mui/material/Paper";
 import LaunchCard from "./LaunchCard";
-import {api, getDataLaunches, useAxios} from "../../api/api";
+import {api} from "../../api/api";
 import SheduleSkeleton from "../assets/sheduleSkeleton";
 import {useDispatch, useSelector} from "react-redux";
 import {useMyDrop} from "../assets/hooks";
@@ -24,23 +24,22 @@ const LauchSchedule = () => {
 
     const getDataLaunches = async ()=>{
         const launches = await api.getLaunches()
-        console.log(launches)
         dispatch(getCurrentLaunches(launches))
     }
 
 
 
     // Ф-я отрисовки компонента LaunchCard
-    const render = (arr, type = ItemTypes.CARD, parentArr = 'pastLaunches')=>{
-        return arr.map((item)=> <LaunchCard id={item.id} key={item.id} name={item.name} rocket_name={item.rocketName} type={type} parentArr={parentArr} />)
+    const render = (arr, type = ItemTypes.CARD)=>{
+        return arr.map((item)=> <LaunchCard id={item.id} key={item.id} name={item.name} rocket_name={item.rocketName} type={type} />)
     }
     // Рендер прошлых запусков
     const pastLaunchesData = render(pastLaunches)
     // Рендер текущих запусков + обёртка в хук useMyDrop для работы d'n'd
-    const currentLaunchesData = render(currentLaunches, ItemTypes.LAUNCHES, 'currentLaunches')
+    const currentLaunchesData = render(currentLaunches, ItemTypes.LAUNCHES)
     const lauches_toRender = useMyDrop(currentLaunchesData, 'Launches', ItemTypes.MYLAUNCHES )
     // Рендер моих запусков + обёртка в хук useMyDrop для работы d'n'd
-    const myLaunchesData = render(myLaunches, ItemTypes.MYLAUNCHES, 'myLaunches')
+    const myLaunchesData = render(myLaunches, ItemTypes.MYLAUNCHES)
     const myLaunches_toRender = useMyDrop(myLaunchesData, 'MyLaunches', ItemTypes.LAUNCHES)
 
     return (
@@ -48,20 +47,18 @@ const LauchSchedule = () => {
             <div>
                 <div className='title'>Past launches</div>
                 <Paper className='body'>
-                    {pastLaunchesData}
+                      { pastLaunches ? pastLaunchesData : <SheduleSkeleton/> }
                 </Paper>
                 {/*<SheduleSkeleton/>*/}
             </div>
             <div>
                 <div className='title'>Launches</div>
-                {
-                    currentLaunches ? lauches_toRender : <SheduleSkeleton/>
-                }
+                { currentLaunches ? lauches_toRender : <SheduleSkeleton/> }
 
             </div>
             <div>
                 <div className='title'>My launches</div>
-                {myLaunches_toRender}
+                { myLaunches ? myLaunches_toRender : <SheduleSkeleton/> }
             </div>
 
 
