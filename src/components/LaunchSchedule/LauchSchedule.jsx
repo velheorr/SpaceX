@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Paper from "@mui/material/Paper";
 import LaunchCard from "./LaunchCard";
 import {api} from "../../api/api";
 import SheduleSkeleton from "../assets/sheduleSkeleton";

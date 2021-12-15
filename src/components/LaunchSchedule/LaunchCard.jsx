@@ -20,9 +20,7 @@ const LaunchCard = ({id, rocket_name, name, type, date, parentArr}) => {
         // уведомление что добавлен элемент в мои полёты и его добавление
         const filter = myLaunches.filter(i => i.id === id)
         if (filter.length > 0){
-            dispatch(setAlert('This flight already booked!'))
-            setTimeout(()=>{dispatch(setAlert())}, 1000)
-            return <MyAlert/>;
+            return ;
         } else {
             dispatch(setAlert(name))
         }
