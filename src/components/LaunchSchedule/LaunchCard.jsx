@@ -16,14 +16,14 @@ const LaunchCard = ({id, rocket_name, name, type, date, parentArr}) => {
 
     // получение информации о запуске и добавление его в мои полёты
     const setMyLaunches = async (id)=>{
-        /*if(myLaunches.filter(i => i.id === id)){
-            return
-        }*/
         // уведомление что добавлен элемент в мои полёты и его добавление
         const filter = myLaunches.filter(i => i.id === id)
-        if (filter.length > 0){ return }
+        if (filter.length > 0){
+            return;
+        } else {
+            dispatch(setAlert(name))
+        }
 
-        dispatch(setAlert(name))
         setTimeout(()=>{dispatch(setAlert())}, 1000)
         const launches = await api.getOne(id)
         dispatch(addMyLaunch(launches))
