@@ -46,7 +46,8 @@ const LaunchCard = ({id, rocket_name, name, type, date, parentArr}) => {
     })
     // стиль элемента при использовании dnd
     const style = {
-        opacity:isDragging ? '0.7' : '1', cursor: 'move'
+        opacity:isDragging ? '0.7' : '1',
+        cursor: 'move'
     }
 
     // получение данных для детальеого просмотра запуска
@@ -61,7 +62,9 @@ const LaunchCard = ({id, rocket_name, name, type, date, parentArr}) => {
             <CardContent>
                 <Typography variant="h6" component="div">{name}</Typography>
                 <Typography variant="caption">{rocket_name}</Typography>
-                <div className='rocket' onClick={()=> flightDescription(id, parentArr)}><RocketLaunchIcon color='primary'/></div>
+                <div className='rocket' onClick={()=> flightDescription(id, parentArr)}>
+                    <RocketLaunchIcon color='primary'/>
+                </div>
             </CardContent>
         </Card>
     );

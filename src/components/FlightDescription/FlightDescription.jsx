@@ -14,7 +14,10 @@ const FlightDescription = () => {
 
     return (
         <div className='details'>
-            <Button onClick={()=> dispatch(switchPage(1))} variant="outlined" startIcon={<ArrowBackIcon />}>
+            <Button
+                onClick={()=> dispatch(switchPage(1))}
+                variant="outlined"
+                startIcon={<ArrowBackIcon />}>
                 Back
             </Button>
             <Card sx={{ maxWidth: 400, margin: '0 auto' }}>
@@ -25,13 +28,11 @@ const FlightDescription = () => {
                     alt="space X"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {launchDetails.name}
-                    </Typography>
-                    <ul>
-                        <li>Rocket: {launchDetails.rocketName}</li>
-                        <li>Flight number: {launchDetails.flight_number}</li>
-                        <li>Date: {launchDetails.date}</li>
+                    <div className='infoTitle'>{launchDetails.name}</div>
+                    <ul className='infoData'>
+                        <li>Rocket: <span>{launchDetails.rocketName}</span></li>
+                        <li>Flight number: <span>{launchDetails.flight_number}</span></li>
+                        <li>Date: <span>{launchDetails.date}</span></li>
                     </ul>
                 </CardContent>
             </Card>

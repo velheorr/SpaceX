@@ -6,8 +6,6 @@ import {useSelector} from "react-redux";
 const MyAlert = () => {
     const alert = useSelector(state => state.launches.alert);
 
-
-
     return (
         <div className='myAlert'>
             <Paper>

@@ -81,3 +81,15 @@
         }
     }
 }
+
+.infoTitle {
+    font-weight: 600;
+    text-align: center;
+    font-size: 18px;
+}
+.infoData {
+    list-style: none;
+    span {
+        font-weight: 600;
+    }
+}

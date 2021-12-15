@@ -35,8 +35,6 @@ const App = ()=> {
                     <FlightDescription/>
             }
             { modal ? <Modal/> : null}
-
-
         </div>
     );
 }

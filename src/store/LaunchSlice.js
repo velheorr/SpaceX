@@ -42,7 +42,9 @@ export const launchSlice = createSlice({
 const {actions, reducer} = launchSlice;
 export default reducer;
 export const {
-    setAlert, switchPage, switchModal, getCurrentLaunches, getPastLaunches, detailPage, addMyLaunch, delMyLaunch, addModalData
+    setAlert, switchPage, switchModal, getCurrentLaunches,
+    getPastLaunches, detailPage, addMyLaunch, delMyLaunch,
+    addModalData
 } = actions;
 
 
