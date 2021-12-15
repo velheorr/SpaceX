@@ -8,8 +8,6 @@ import {useDrag} from "react-dnd";
 import {addModalData, addMyLaunch, detailPage, setAlert, switchModal, switchPage} from "../../store/LaunchSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {api} from "../../api/api";
-import MyAlert from "../assets/Alert";
-
 
 const LaunchCard = ({id, rocket_name, name, type, date, parentArr}) => {
     const myLaunches = useSelector(state => state.launches.myLaunches);
