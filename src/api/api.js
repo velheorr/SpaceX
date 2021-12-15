@@ -32,7 +32,7 @@ export const api = {
         let responce = await axios.get(`${baseURL}launches/${id}`)
         const res = responce.data
         const rocket = await api.getRocketName(res.rocket)
-        return {date: res.date_local, name: res.name, flight_number: res.flight_number, rocketName: rocket }
+        return {date: res.date_local, name: res.name, flight_number: res.flight_number, rocketName: rocket, id: res.id }
     }
 
 }

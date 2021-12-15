@@ -30,7 +30,7 @@ const LaunchCard = ({id, rocket_name, name, type, date, parentArr}) => {
                     // уведомление что добавлен элемент в мои полёты и его добавление
                     dispatch(setAlert(name))
                     setTimeout(()=>{dispatch(setAlert())}, 1000)
-                    setMyLaunches(id)
+                     setMyLaunches(id)
                 } else if (dropResult.name === 'Launches') {
                     // запуск модального окна при отмене полёта
                     const data = {id, name, rocket_name, date}
