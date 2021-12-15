@@ -1,11 +1,14 @@
 import React from 'react';
 import Paper from "@mui/material/Paper";
 import Alert from "@mui/material/Alert";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setAlert} from "../../store/LaunchSlice";
 
 const MyAlert = () => {
     const alert = useSelector(state => state.launches.alert);
-
+/*    const dispatch = useDispatch()
+    let timer = setTimeout(()=>{dispatch(setAlert())}, 1000)
+    clearTimeout(timer)*/
     return (
         <div className='myAlert'>
             <Paper>

@@ -8,6 +8,7 @@ import {useDrag} from "react-dnd";
 import {addModalData, addMyLaunch, detailPage, setAlert, switchModal, switchPage} from "../../store/LaunchSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {api} from "../../api/api";
+import MyAlert from "../assets/Alert";
 
 
 const LaunchCard = ({id, rocket_name, name, type, date, parentArr}) => {
@@ -19,11 +20,12 @@ const LaunchCard = ({id, rocket_name, name, type, date, parentArr}) => {
         // уведомление что добавлен элемент в мои полёты и его добавление
         const filter = myLaunches.filter(i => i.id === id)
         if (filter.length > 0){
-            return;
+            dispatch(setAlert('This flight already booked!'))
+            setTimeout(()=>{dispatch(setAlert())}, 1000)
+            return <MyAlert/>;
         } else {
             dispatch(setAlert(name))
         }
-
         setTimeout(()=>{dispatch(setAlert())}, 1000)
         const launches = await api.getOne(id)
         dispatch(addMyLaunch(launches))

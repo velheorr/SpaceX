@@ -40,6 +40,7 @@ const LauchSchedule = () => {
     }
     // Рендер прошлых запусков
     const pastLaunchesData = render(pastLaunches)
+    const pastlauches_toRender = useMyDrop(pastLaunchesData, 'PastLaunches', ItemTypes.CARD )
     // Рендер текущих запусков + обёртка в хук useMyDrop для работы d'n'd
     const currentLaunchesData = render(currentLaunches, ItemTypes.LAUNCHES)
     const lauches_toRender = useMyDrop(currentLaunchesData, 'Launches', ItemTypes.MYLAUNCHES )
@@ -51,9 +52,7 @@ const LauchSchedule = () => {
         <div className='body-wrapper'>
             <div>
                 <div className='title'>Past launches</div>
-                <Paper className='body'>
-                      { !loadPast ? pastLaunchesData : <SheduleSkeleton/> }
-                </Paper>
+                       { !loadPast ? pastlauches_toRender : <SheduleSkeleton/> }
             </div>
             <div>
                 <div className='title'>Launches</div>
